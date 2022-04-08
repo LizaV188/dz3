@@ -30,7 +30,7 @@ if (set_str <= set_all_num|set_sep):
   if sep == set():  # разделителя вообще нет, значит только 1 уникальное цифровое значение
     rez = str_num
   elif len(sep)==1:  # в строке есть один верный разделитель
-    if set_str&set_all_num :  # и значения тоже есть - применяем split
+    if set_str&set_all_num :  # и значения из заданного диапазона тоже есть - применяем split
       lst_num = str_num.split(list(sep)[0])
       uniq_num = list(set(lst_num))
       rez = ', '.join(uniq_num)
