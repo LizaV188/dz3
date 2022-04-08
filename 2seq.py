@@ -20,27 +20,29 @@
 
 set_sep = {',','/',';'}
 set_all_num = set([str(i) for i in range(10)])
-print(set_sep)
-print(set_all_num)
-print(set_all_num|set_sep)
 str_num = input('Введите любые цифры через ОДИН из разделителей ( ,  ;  / ) ')
 str_num = str_num.replace(' ','')         # удаляем все пробелы - нечувствительность к случайным пробелам
 set_str = set(str_num)
+rez = ''
 # в строке должна быть только цифры и разделители  и разделители - только 1 из набора разделителей
-if set_str in set_all_num|set_sep:
-    print ('ok')
+if (set_str <= set_all_num|set_sep):
+  sep = set_str&set_sep
+  if sep == set():  # разделителя вообще нет, значит только 1 уникальное цифровое значение
+    rez = str_num
+  elif len(sep)==1:  # в строке есть один верный разделитель
+    if set_str&set_all_num :  # и значения тоже есть - применяем split
+      lst_num = str_num.split(list(sep)[0])
+      uniq_num = list(set(lst_num))
+      rez = ', '.join(uniq_num)
+    else:
+      print('Кроме верного разделителя', list(sep)[0], 'должны быть еще цифры..' )
+  else:
+    print('Разделитель должен быть только один из набора ', ' или '.join(set_sep), '. Во введенной строчке у вас: ',' и '.join(sep))
 else:
-    print('no')
+  print('Вы ввели не цифры и не допустимые разделители')
 
-print(set_str)
+if rez:
+  print('Результат, уникальные цифровые значения:', rez)
 
 
-# print(str_num)
 
-# lst_num = str_num.split(',')
-# lst_num1 = [int(i) for i in lst_num]
-# set_num=set(lst_num1)
-# new_list = list(set_num)
-# new_list1 = [str(i) for i in new_list]
-# #print(new_list)
-# print('Результат:', ', '.join(new_list1))
