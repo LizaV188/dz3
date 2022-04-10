@@ -19,5 +19,5 @@ q_num = int(input('Введите количество элементов спи
 for i in range(q_num):
     num = input('Введите '+str(i+1)+' элемент: ')
     list_num.append(num)
-print('Вывод: ', sorted(list_num))
+print(f'Вывод: [ {", ".join(sorted(list_num))} ]')
 
